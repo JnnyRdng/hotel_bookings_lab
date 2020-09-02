@@ -13,11 +13,32 @@
 </template>
 
 <script>
+import { eventBus } from '@/main.js'
+import BookingService from '@/services/BookingService.js'
 import BookingForm from '@/components/BookingForm.vue';
 import BookingList from '@/components/BookingList.vue';
 
 export default {
     name: 'app',
+    data(){
+        return {
+            bookings: [],
+            selectedBooking:null
+        }
+    },
+    mounted () {
+
+        BookingService.getBookings()
+        .then(bookings => this.bookings = bookings);
+
+        eventBus.$on('new-booking', booking => this.bookings.push(booking));
+        eventBus.$on('remove-booking', (id) => {
+            let index = this.bookings.findIndex(booking => booking._id === id);
+            this.bookings.splice(index,1);
+        });
+
+    },
+
     components: {
         'booking-form': BookingForm,
         'booking-list': BookingList
