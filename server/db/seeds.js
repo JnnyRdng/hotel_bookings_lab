@@ -1,5 +1,3 @@
-const { Db } = require("mongodb");
-
 use hotel_bookings;
 
 db.dropdatabase();
@@ -14,7 +12,7 @@ db.bookings.insertMany(
         {
             name: "Marek",
             email: "marek@email.com",
-            checkedIn: TextTrackCue
+            checkedIn: true
         },
         {
             name: "Jarrod",
