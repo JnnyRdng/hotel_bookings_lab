@@ -1,6 +1,7 @@
 <template>
 <div>
     <ul>
+        
         <BookingDetail v-for="(booking, index) in bookings" :key="index" :booking="booking" />
     </ul>
 

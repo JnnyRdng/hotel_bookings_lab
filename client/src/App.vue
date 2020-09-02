@@ -7,7 +7,7 @@
     </section>
     <section id="displayBookings">
         <h4>Hello from the booking list section</h4>
-        <booking-list /> 
+        <booking-list :bookings="bookings" /> 
     </section>
 </div>
 </template>
