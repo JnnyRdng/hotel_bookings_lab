@@ -3,7 +3,7 @@
     <h3>Hello from the main side</h3>
     <section id="formSection">
         <h4>Hello from the form section</h4>
-           <booking-form />     
+           <booking-form :selectedBooking="selectedBooking" />     
     </section>
     <section id="displayBookings">
         <h4>Hello from the booking list section</h4>
@@ -36,6 +36,12 @@ export default {
             let index = this.bookings.findIndex(booking => booking._id === id);
             this.bookings.splice(index,1);
         });
+        eventBus.$on("update-booking", booking=> this.selectedBooking = booking);
+        eventBus.$on("updated-booking", updatedBooking => {
+            const index = this.bookings.findIndex(booking => booking._id = updatedBooking._id);
+            this.bookings.splice(index, 1, updatedBooking);
+            this.selectedBooking = null;
+        })
 
     },
 

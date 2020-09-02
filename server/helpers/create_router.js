@@ -32,7 +32,19 @@ const createRouter = function (collection) {
                 res.json({ status: 500, error: err })
             });
     });
+    router.put('/:id', (req,res) => {
+      const id = ObjectID(req.params.id);
+      const updatedBooking = req.body;
+      collection.findOneAndUpdate(
+        {_id:id},
+        {$set: updatedBooking},
+        {returnOriginal: false}
+      )
+      .then(result => res.json(result.value))
+    })
+    
 
     return router;
 };
 module.exports = createRouter;
+

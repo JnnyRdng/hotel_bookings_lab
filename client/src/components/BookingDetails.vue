@@ -22,7 +22,9 @@ export default {
     name: "booking-details",
     props: ["booking"],
     methods: {
-        handleEdit: function() {},
+        handleEdit: function() {
+            eventBus.$emit("update-booking", this.booking);
+        },
         handleDelete: function() {
             BookingServices.deleteBooking(this.booking._id)
             .then(eventBus.$emit("remove-booking", this.booking._id))

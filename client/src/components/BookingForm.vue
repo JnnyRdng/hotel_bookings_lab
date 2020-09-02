@@ -23,6 +23,7 @@ import BookingService from "@/services/BookingService.js";
 import { eventBus } from "@/main.js";
 export default {
     name: "booking-form",
+    props: ["selectedBooking"],
     data() {
         return {
             newBooking: { name: "", email: "", checkedIn: false },
@@ -31,12 +32,25 @@ export default {
     },
     methods: {
         handleFormSubmit: function () {
-            BookingService.addBooking(this.newBooking).then((booking) => {
-                eventBus.$emit("new-booking", booking);
-                this.newBooking = { name: "", email: "", checkedIn: false };
-            });
+            if (this.selectedBooking) {
+                BookingService.updateBooking(this.selectedBooking._id, this.newBooking).then(booking => {
+                    eventBus.$emit("updated-booking", booking);
+                    this.newBooking = { name: "", email: "", checkedIn: false };
+                });
+            } else {
+                BookingService.addBooking(this.newBooking).then((booking) => {
+                    eventBus.$emit("new-booking", booking);
+                    this.newBooking = { name: "", email: "", checkedIn: false };
+                });
+            }
         },
     },
+    watch: {
+        selectedBooking: function () {
+            this.newBooking = this.selectedBooking;
+        }
+    }
+
 };
 </script>
 

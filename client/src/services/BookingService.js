@@ -18,5 +18,13 @@ export default {
         return fetch(baseURL + id, {
             method: "DELETE"
         });
+    },
+    updateBooking(_id, payload) {
+        return fetch(baseURL + _id, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json());
     }
 }
