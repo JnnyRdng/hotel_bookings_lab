@@ -31,10 +31,10 @@ export default {
     },
     methods: {
         handleFormSubmit: function () {
-            BookingService.addBooking(this.newBooking).then((booking) =>
-                eventBus.$emit("new-booking", booking)
-            );
-            this.newBooking = { name: "", email: "", checkedIn: false };
+            BookingService.addBooking(this.newBooking).then((booking) => {
+                eventBus.$emit("new-booking", booking);
+                this.newBooking = { name: "", email: "", checkedIn: false };
+            });
         },
     },
 };

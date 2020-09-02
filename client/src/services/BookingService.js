@@ -9,7 +9,7 @@ export default {
     addBooking(payload) {
         return fetch(baseURL, {
             method: "POST",
-            headers: { "ContentType": "application/json" },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
         })
             .then(res => res.json());
