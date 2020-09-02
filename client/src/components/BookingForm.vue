@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import BookingService from "@/services/BookingService.js";
 export default {
     name: "booking-form",
     data() {
@@ -32,6 +33,7 @@ export default {
             BookingService.addBooking(this.newBooking).then((booking) =>
                 eventBus.$emit("new-booking", booking)
             );
+            this.newBooking = { name: "", email: "", checkedIn: false };
         },
     },
 };
