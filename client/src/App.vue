@@ -3,18 +3,18 @@
     <h3>Hello from the main side</h3>
     <section id="formSection">
         <h4>Hello from the form section</h4>
-           <booking-form>     
+           <booking-form />     
     </section>
     <section id="displayBookings">
         <h4>Hello from the booking list section</h4>
-        <booking-list> 
+        <booking-list /> 
     </section>
 </div>
 </template>
 
 <script>
-import BookingForm from '@components/BookingForm.vue';
-import BookingList from '@components/BookingList.vue';
+import BookingForm from '@/components/BookingForm.vue';
+import BookingList from '@/components/BookingList.vue';
 
 export default {
     name: 'app',
